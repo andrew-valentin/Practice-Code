@@ -1,7 +1,7 @@
 /*
  * Code created by Andrew Valentin
  * Available on https://github.com/andrew-valentin/Practice-Code
- * For more resources visit https://ucfsi.wordpress.com/computer-science-i-with-andrew/
+ * For more resources, visit https://ucfsi.wordpress.com/computer-science-i-with-andrew/
  */
 
 
