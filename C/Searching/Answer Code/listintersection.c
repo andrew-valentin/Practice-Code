@@ -8,9 +8,61 @@
 
 #include <stdio.h>
 
-int listIntersectionHelper(int *arr1, int *arr2, int len1, int len2)
+int linearSearch(int *arr, int len, int val)
 {
-	int index1 = 0, index2 = 0, print = 0;
+	int i;
+	
+	for (i = 0; i < len; i++)
+		if (arr[i] == val)
+			return 1;
+			
+	return 0;
+}
+
+int binarySearch(int *arr, int len, int val)
+{		
+	int mid, lo = 0, hi = len - 1;
+		
+	while (lo <= hi)
+	{
+		mid = ((hi - lo) / 2) + lo;
+		
+		if (arr[mid] > val)
+			hi = mid - 1;
+		else if (arr[mid] < val)
+			lo = mid + 1;
+		else
+			return 1;
+	}
+	
+	return 0;
+}
+
+int listIntersection(int *arr1, int *arr2, int len1, int len2)
+{
+	int i;
+
+	for (i = 0; i < len1; i++)
+		if (linearSearch(arr2, len2, arr1[i]))
+			printf("%d ", arr1[i]);
+	
+	printf("\n");
+}
+
+int listIntersectionFancier(int *arr1, int *arr2, int len1, int len2)
+{
+	int i;
+
+	for (i = 0; i < len1; i++)
+		if (binarySearch(arr2, len2, arr1[i]))
+			printf("%d ", arr1[i]);
+	
+	printf("\n");
+}
+
+int listIntersectionFanciest(int *arr1, int *arr2, int len1, int len2)
+{
+	int index1 = 0, index2 = 0;
 	
 	while (index1 < len1 && index2 < len2)
 	{
@@ -27,20 +79,10 @@ int listIntersectionHelper(int *arr1, int *arr2, int len1, int len2)
 			printf("%d ", arr1[index1]);
 			index1++;
 			index2++;
-			print = 1;
 		}
 	}
 	
-	return print;
-}
-
-// Print all of the values that both arrays have in common
-void listIntersection(int *arr1, int *arr2, int len1, int len2)
-{
-	if (!listIntersectionHelper(arr1, arr2, len1, len2))
-		printf("Both arrays do not have any values in common!\n");
-	else
-		printf("\n");
+	printf("\n");
 }
 
 int main()
